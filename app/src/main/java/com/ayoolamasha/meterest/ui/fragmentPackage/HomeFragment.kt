@@ -15,12 +15,14 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ayoolamasha.meterest.R
 import com.ayoolamasha.meterest.data.execptionPackage.Failure
 import com.ayoolamasha.meterest.data.execptionPackage.PhotoFailure
+import com.ayoolamasha.meterest.data.extensionsPackage.empty
 import com.ayoolamasha.meterest.data.extensionsPackage.failure
 import com.ayoolamasha.meterest.data.extensionsPackage.success
 import com.ayoolamasha.meterest.databinding.HomeFragmentBinding
 import com.ayoolamasha.meterest.domain.PhotoUICase
 import com.ayoolamasha.meterest.ui.adapterPackage.PhotoAdapter
 import com.ayoolamasha.meterest.ui.viewmodelPackage.HomeViewModel
+import com.google.protobuf.Empty
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,6 +39,7 @@ class HomeFragment: Fragment() {
         with(homeViewModel) {
             success(livePhotos, ::renderPhotoList)
             failure(failure, ::handleFailure)
+            empty(empty,::handleEmpty)
         }
 
 
@@ -90,6 +93,10 @@ class HomeFragment: Fragment() {
         binding.progressLoading.visibility= View.VISIBLE
         binding.photoRecycler.visibility = View.GONE
 
+    }
+
+    private fun handleEmpty(empty: Any?){
+        Toast.makeText(activity, "Empty List", Toast.LENGTH_SHORT).show()
     }
 
 }

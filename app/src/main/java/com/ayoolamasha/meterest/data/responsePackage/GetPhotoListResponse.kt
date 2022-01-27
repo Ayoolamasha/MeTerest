@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
 
 data class GetPhotoListResponse(
     @SerializedName("id")
-    val photoId:String?,
+    val photoId:String,
     @SerializedName("created_at")
     val photoDate:String?,
     @SerializedName("likes")
@@ -22,16 +22,16 @@ data class GetPhotoListResponse(
     val picturesUrls:Urls?
 ){
 
-//    fun fromApiToPhotoEntity() = PhotosEntity(roomPhotoId = photoId,
-//        roomPhotoDate = rawDateToString(photoDate), roomPhotoLikes = photoLikes, roomPhotoDescription = photoDescription,
-//        roomUserName = accountUserName?.userName, roomUserFullName = accountUserName?.userFullName,
-//        roomRawImage = picturesUrls?.rawImage, roomFullImage = picturesUrls?.fullImage, roomRegularImage = picturesUrls?.regularImage,
-//        roomSmallImage = picturesUrls?.smallImage, roomThumbImage = picturesUrls?.thumbImage)
+    fun fromApiToPhotoEntity() = PhotosEntity(roomPhotoId = photoId,
+        roomPhotoDate = rawDateToString(photoDate), roomPhotoLikes = photoLikes, roomPhotoDescription = photoDescription,
+        roomUserName = accountUserName?.userName, roomUserFullName = accountUserName?.userFullName,
+        roomRawImage = picturesUrls?.rawImage, roomFullImage = picturesUrls?.fullImage, roomRegularImage = picturesUrls?.regularImage,
+        roomSmallImage = picturesUrls?.smallImage, roomThumbImage = picturesUrls?.thumbImage, roomUserProfileImageSmall = accountUserName?.userProfileImage?.userProfileImageSmall)
 
-    fun toPhotoUiCase() = PhotoUICase(photoIdUiCase = photoId, photoLikesUiCase = photoLikes,
-        photoDateUiCase = rawDateToString(photoDate), photoRegularUiCase = picturesUrls?.fullImage,
-        photoSmallUiCase = picturesUrls?.smallImage,
-        photoOwnerNameUiCase = accountUserName?.userFullName, photoDescriptionUiCase = photoDescription, photoOwnerProfileImage = accountUserName?.userProfileImage?.userProfileImageSmall)
+//    fun toPhotoUiCase() = PhotoUICase(photoIdUiCase = photoId, photoLikesUiCase = photoLikes,
+//        photoDateUiCase = rawDateToString(photoDate), photoRegularUiCase = picturesUrls?.fullImage,
+//        photoSmallUiCase = picturesUrls?.smallImage,
+//        photoOwnerNameUiCase = accountUserName?.userFullName, photoDescriptionUiCase = photoDescription, photoOwnerProfileImage = accountUserName?.userProfileImage?.userProfileImageSmall)
 }
 
 data class User(

@@ -21,6 +21,9 @@ class HomeViewModel @Inject constructor(private val getAllPhotos: GetAllPhotos):
     private val _failure: MutableLiveData<Failure> = MutableLiveData()
     val failure: LiveData<Failure> = _failure
 
+    private val _empty: MutableLiveData<Any> = MutableLiveData()
+    val empty: LiveData<Any> = _empty
+
 
 
     private val _mPhotos: MutableLiveData<List<PhotoUICase>> = MutableLiveData()
@@ -32,12 +35,12 @@ class HomeViewModel @Inject constructor(private val getAllPhotos: GetAllPhotos):
         }
 
     private fun handlePhotoList(photoUICase: List<PhotoUICase>){
-//        val photoList: MutableList<PhotoUICase> = ArrayList()
-//        val photoUi = PhotoUICase(photoUICase.photoIdUiCase, photoUICase.photoLikesUiCase,
-//            photoUICase.photoDateUiCase, photoUICase.photoRegularUiCase, photoUICase.photoSmallUiCase,photoUICase.photoOwnerNameUiCase, photoUICase.photoDescriptionUiCase)
-//        photoList.add(photoUi)
-        _mPhotos.value = photoUICase
+        if (photoUICase.isNullOrEmpty()){
+            _empty.value = photoUICase
+        }else{
+            _mPhotos.value = photoUICase
         }
+    }
 
 
     private fun handleFailure(failure: Failure){

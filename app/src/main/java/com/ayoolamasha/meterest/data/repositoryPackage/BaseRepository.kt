@@ -7,5 +7,5 @@ import com.ayoolamasha.meterest.domain.PhotoUICase
 
 interface BaseRepository {
    suspend fun getPhotos(): Either<Failure, List<PhotoUICase>>
-//   suspend fun saveToDB(photosEntity: List<PhotosEntity>)
+
 }

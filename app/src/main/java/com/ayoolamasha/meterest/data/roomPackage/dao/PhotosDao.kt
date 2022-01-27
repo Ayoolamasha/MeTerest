@@ -8,19 +8,22 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 abstract class PhotosDao {
     @Insert
-    abstract suspend fun insertPhotos(photosEntity: List<PhotosEntity>)
+    abstract fun insertPhotos(photosEntity: List<PhotosEntity>)
 
     @Query("DELETE FROM PHOTOS_TABLE")
-    abstract suspend fun deleteAll()
+    abstract fun deleteAll()
 
     @Query("SELECT * FROM PHOTOS_TABLE")
     abstract fun getAllRoomPhotos(): LiveData<List<PhotosEntity>>
+
+    @Query("SELECT * FROM PHOTOS_TABLE")
+    abstract fun getAllRoomPhotosList(): List<PhotosEntity>
 
 //    @Query("SELECT * FROM PHOTOS_TABLE WHERE photoId = :photoId")
 //    abstract suspend fun getRoomPhotoById(photoId:String): LiveData<PhotosEntity>
 
     @Transaction
-    open suspend fun clearAndInsertRoomPhotos(photosEntity: List<PhotosEntity>){
+    open fun clearAndInsertRoomPhotos(photosEntity: List<PhotosEntity>){
         deleteAll()
         insertPhotos(photosEntity)
     }

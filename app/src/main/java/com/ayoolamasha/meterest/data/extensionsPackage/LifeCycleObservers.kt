@@ -10,3 +10,6 @@ fun <T : Any, L : LiveData<T>> LifecycleOwner.success(liveData: L, body: (T?) ->
 
 fun <L : LiveData<Failure>> LifecycleOwner.failure(liveData: L, body: (Failure?) -> Unit) =
     liveData.observe(this, Observer(body))
+
+fun <L : LiveData<Any>> LifecycleOwner.empty(liveData: L, body: (Any?) -> Unit) =
+    liveData.observe(this, Observer(body))
