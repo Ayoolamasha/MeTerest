@@ -8,4 +8,6 @@ interface PhotoApiServiceHelper {
 
     suspend fun getAllPhotos(): Response<List<GetPhotoListResponse>>
 
+    suspend fun getAllPhotosPaging(page:Int?, perPage:Int?, orderBy:String?): Response<List<GetPhotoListResponse>>
+
 }

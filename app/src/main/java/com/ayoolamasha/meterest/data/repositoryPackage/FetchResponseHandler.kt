@@ -3,6 +3,7 @@ package com.ayoolamasha.meterest.data.repositoryPackage
 import com.ayoolamasha.meterest.data.execptionPackage.Failure
 import com.ayoolamasha.meterest.data.extensionsPackage.Either
 import retrofit2.Response
+import java.io.IOException
 
 
 /**
@@ -45,7 +46,6 @@ fun<T, R> request(
         }
     }catch (exception:Throwable){
         Either.LeftFailure(Failure.ServerError)
-
     }
 
 
